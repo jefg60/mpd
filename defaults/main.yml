@@ -1,0 +1,19 @@
+---
+# defaults file for ansible-install-mpd
+ansible_install_mpd_bind_to_address: any
+ansible_install_mpd_conf: /etc/mpd.conf
+ansible_install_mpd_conf_src: mpd.conf.j2
+
+ansible_install_mpd_music_directory: /var/lib/mpd/music
+ansible_install_mpd_playlist_directory: /var/lib/mpd/playlists
+
+ansible_install_mpd_user: mpd
+
+ansible_install_mpd_audio_output:
+  httpd:
+    type: httpd
+    name: My HTTP Stream
+    encoder: lame
+    port: 8000
+    bitrate: 128
+    format: "44100:16:2"
