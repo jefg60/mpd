@@ -1,7 +1,6 @@
 # {{ ansible_managed }}
 # Read the user manual for documentation: http://www.musicpd.org/doc/user/
 
-
 # Files and directories #######################################################
 #
 # This setting controls the top directory which MPD will search to discover the
@@ -10,14 +9,14 @@
 # be disabled and audio files will only be accepted over ipc socket (using
 # file:// protocol) or streaming files over an accepted protocol.
 #
-music_directory		"{{ ansible_install_mpd_music_directory }}"
+music_directory		"{{ mpd_music_directory }}"
 #
 # This setting sets the MPD internal playlist directory. The purpose of this
 # directory is storage for playlists created by MPD. The server will use
 # playlist files not created by the server but only if they are in the MPD
 # format. This setting defaults to playlist saving being disabled.
 #
-playlist_directory		"{{ ansible_install_mpd_playlist_directory }}"
+playlist_directory		"{{ mpd_playlist_directory }}"
 #
 # This setting sets the location of the MPD database. This file is used to
 # load the database at server start up and store the database while the
@@ -25,7 +24,7 @@ playlist_directory		"{{ ansible_install_mpd_playlist_directory }}"
 # MPD to accept files over ipc socket (using file:// protocol) or streaming
 # files over an accepted protocol.
 #
-db_file			"{{ ansible_install_mpd_db_file }}"
+db_file			"{{ mpd_db_file }}"
 #
 # These settings are the locations for the daemon log files for the daemon.
 # These logs are great for troubleshooting, depending on your log_level
@@ -34,25 +33,25 @@ db_file			"{{ ansible_install_mpd_db_file }}"
 # The special value "syslog" makes MPD use the local syslog daemon. This
 # setting defaults to logging to syslog, otherwise logging is disabled.
 #
-log_file			"{{ ansible_install_mpd_log_file }}"
+log_file			"{{ mpd_log_file }}"
 #
 # This setting sets the location of the file which stores the process ID
 # for use of mpd --kill and some init scripts. This setting is disabled by
 # default and the pid file will not be stored.
 #
-pid_file			"{{ ansible_install_mpd_pid_file }}"
+pid_file			"{{ mpd_pid_file }}"
 #
 # This setting sets the location of the file which contains information about
 # most variables to get MPD back into the same general shape it was in before
 # it was brought down. This setting is disabled by default and the server
 # state will be reset on server start up.
 #
-state_file			"{{ ansible_install_mpd_state_file }}"
+state_file			"{{ mpd_state_file }}"
 #
 # The location of the sticker database.  This is a database which
 # manages dynamic information attached to songs.
 #
-sticker_file			"{{ ansible_install_mpd_sticker_file }}"
+sticker_file			"{{ mpd_sticker_file }}"
 #
 ###############################################################################
 
@@ -64,14 +63,14 @@ sticker_file			"{{ ansible_install_mpd_sticker_file }}"
 # initialization. This setting is disabled by default and MPD is run as the
 # current user.
 #
-user				"{{ ansible_install_mpd_user }}"
+user				"{{ mpd_user }}"
 #
 # This setting specifies the group that MPD will run as. If not specified
 # primary group of user specified with "user" setting will be used (if set).
 # This is useful if MPD needs to be a member of group such as "audio" to
 # have permission to use sound card.
 #
-group				"{{ ansible_install_mpd_group }}"
+group				"{{ mpd_group }}"
 #
 # This setting sets the address for the daemon to listen on. Careful attention
 # should be paid if this is assigned to anything other then the default, any.
@@ -79,7 +78,7 @@ group				"{{ ansible_install_mpd_group }}"
 # systemd socket activiation is in use.
 #
 # For network
-bind_to_address		"{{ ansible_install_mpd_bind_to_address }}"
+bind_to_address		"{{ mpd_bind_to_address }}"
 #
 # And for Unix Socket
 #bind_to_address		"~/.mpd/socket"
@@ -87,7 +86,7 @@ bind_to_address		"{{ ansible_install_mpd_bind_to_address }}"
 # This setting is the TCP port that is desired for the daemon to get assigned
 # to.
 #
-port				"{{ ansible_install_mpd_port }}"
+port				"{{ mpd_port }}"
 #
 # This setting controls the type of information which is logged. Available
 # setting arguments are "default", "secure" or "verbose". The "verbose" setting
@@ -208,20 +207,20 @@ input {
 # An example of an ALSA output:
 #
 audio_output {
-	type		"{{ ansible_install_mpd_audio_output.meridian.type }}"
-	name		"{{ ansible_install_mpd_audio_output.meridian.name }}"
-	device		"{{ ansible_install_mpd_audio_output.meridian.device }}"
+	type		"{{ mpd_audio_output.meridian.type }}"
+	name		"{{ mpd_audio_output.meridian.name }}"
+	device		"{{ mpd_audio_output.meridian.device }}"
 #	bind_to_address	"0.0.0.0"		# optional, IPv4 or IPv6
-{% if ansible_install_mpd_audio_output.meridian.quality is defined %}
-	quality		"{{ ansible_install_mpd_audio_output.meridian.quality }}"			# do not define if bitrate is defined
-{% elif ansible_install_mpd_audio_output.meridian.bitrate is defined %}
-	bitrate		"{{ ansible_install_mpd_audio_output.meridian.bitrate }}"			# do not define if quality is defined
+{% if mpd_audio_output.meridian.quality is defined %}
+	quality		"{{ mpd_audio_output.meridian.quality }}"			# do not define if bitrate is defined
+{% elif mpd_audio_output.meridian.bitrate is defined %}
+	bitrate		"{{ mpd_audio_output.meridian.bitrate }}"			# do not define if quality is defined
 {% endif %}
-	format		"{{ ansible_install_mpd_audio_output.meridian.format }}"
-	mixer_type	"{{ ansible_install_mpd_audio_output.meridian.mixer_type }}"
-	mixer_device	"{{ ansible_install_mpd_audio_output.meridian.mixer_device }}"
-	mixer_index	"{{ ansible_install_mpd_audio_output.meridian.mixer_index }}"
-	enabled		"{{ ansible_install_mpd_audio_output.meridian.enabled }}"
+	format		"{{ mpd_audio_output.meridian.format }}"
+	mixer_type	"{{ mpd_audio_output.meridian.mixer_type }}"
+	mixer_device	"{{ mpd_audio_output.meridian.mixer_device }}"
+	mixer_index	"{{ mpd_audio_output.meridian.mixer_index }}"
+	enabled		"{{ mpd_audio_output.meridian.enabled }}"
 }
 #audio_output {
 #	type		"alsa"
@@ -282,17 +281,17 @@ audio_output {
 # An example of a httpd output (built-in HTTP streaming server):
 #
 audio_output {
-	type		"{{ ansible_install_mpd_audio_output.httpd.type }}"
-	name		"{{ ansible_install_mpd_audio_output.httpd.name }}"
-	encoder		"{{ ansible_install_mpd_audio_output.httpd.encoder }}"		# optional, vorbis or lame
-	port		"{{ ansible_install_mpd_audio_output.httpd.port }}"
+	type		"{{ mpd_audio_output.httpd.type }}"
+	name		"{{ mpd_audio_output.httpd.name }}"
+	encoder		"{{ mpd_audio_output.httpd.encoder }}"		# optional, vorbis or lame
+	port		"{{ mpd_audio_output.httpd.port }}"
 #	bind_to_address	"0.0.0.0"		# optional, IPv4 or IPv6
-{% if ansible_install_mpd_audio_output.httpd.quality is defined %}
-	quality		"{{ ansible_install_mpd_audio_output.httpd.quality }}"			# do not define if bitrate is defined
-{% elif ansible_install_mpd_audio_output.httpd.bitrate is defined %}
-	bitrate		"{{ ansible_install_mpd_audio_output.httpd.bitrate }}"			# do not define if quality is defined
+{% if mpd_audio_output.httpd.quality is defined %}
+	quality		"{{ mpd_audio_output.httpd.quality }}"			# do not define if bitrate is defined
+{% elif mpd_audio_output.httpd.bitrate is defined %}
+	bitrate		"{{ mpd_audio_output.httpd.bitrate }}"			# do not define if quality is defined
 {% endif %}
-	format		"{{ ansible_install_mpd_audio_output.httpd.format }}"
+	format		"{{ mpd_audio_output.httpd.format }}"
 #	max_clients	"0"			# optional 0=no limit
 }
 #
