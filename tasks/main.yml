@@ -4,7 +4,7 @@
 - name: install mpd
   apt:
     name: mpd
-    state: installed
+    state: present
     update_cache: yes
 
 - name: Generate MPD configuration file
