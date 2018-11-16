@@ -214,8 +214,8 @@ input {
 # blocks. Setting this block is optional, though the server will only attempt
 # autodetection for one sound card.
 #
-{% if mpd_audio_output is defined %}
-{% for audio_output in mpd_audio_output %}
+{% if mpd_audio_outputs is defined %}
+{% for audio_output in mpd_audio_outputs %}
 audio_output {
 	type			"{{ audio_output.type }}"
 	name			"{{ audio_output.name }}"
