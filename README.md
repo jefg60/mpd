@@ -14,7 +14,10 @@ Role Variables
 Role variables follow the format mpd_setting_in_mpd.conf
 See the mpd.conf.j2 comments for example vars.
 
-mpd_bind_to_address defaults to localhost meaning that mpd is only responsive to clients on the local machine. To override this set an IP or set it to "any".
+```
+mpd_bind_to_address:
+```
+ defaults to localhost meaning that mpd is only responsive to clients on the local machine. To override this set an IP or set it to "any".
 
 For multiple audio outputs, create a YAML dict. If none are defined, MPD will just default to the first soundcard. The template will loop over each setting and include it if it is defined. Again, see the examples in mpd.conf.j2 for a complete list of options. The template should prevent you from including a quality setting and a bitrate together. Either use one or the other, not both.
 e.g.
