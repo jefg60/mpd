@@ -27,7 +27,7 @@ mpd_follow_outside_symlinks: "no"
 mpd_follow_inside_symlinks: "no"
 
 mpd_zeroconf_enabled: "no"
-mpd_zeroconf_name: "no"
+mpd_zeroconf_name: "MPD Music Player"
 
 mpd_auto_update: "yes"
 mpd_auto_update_depth: "0"
