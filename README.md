@@ -17,8 +17,7 @@ See the mpd.conf comments for example vars
 For multiple audio outputs, create a YAML dict. If none are defined, MPD will just default to the first soundcard.
 e.g.
 
---- 
-mpd_audio_output:
+```mpd_audio_output:
   httpd:
     type: httpd
     name: My HTTP Stream
@@ -35,7 +34,7 @@ mpd_audio_output:
     mixer_index: "0"
     enabled: "yes"
     format: "44100:16:2"
----
+```
 
 Dependencies
 ------------
