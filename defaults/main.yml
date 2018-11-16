@@ -2,7 +2,7 @@
 # defaults file for mpd
 mpd_conf: /etc/mpd.conf
 mpd_conf_src: mpd.conf.j2
-mpd_root: /var/lib/mpd/
+mpd_root: /var/lib/mpd
 
 mpd_music_directory: "{{ mpd_root }}/music"
 mpd_playlist_directory: "{{ mpd_root }}/playlists"
