@@ -1,13 +1,36 @@
 ---
 # defaults file for mpd
-mpd_bind_to_address: any
 mpd_conf: /etc/mpd.conf
 mpd_conf_src: mpd.conf.j2
+mpd_root: /var/lib/mpd/
 
-mpd_music_directory: /var/lib/mpd/music
-mpd_playlist_directory: /var/lib/mpd/playlists
+mpd_music_directory: "{{ mpd_root }}/music"
+mpd_playlist_directory: "{{ mpd_root }}/playlists"
+mpd_db_file: "{{ mpd_root }}/database"
+mpd_log_file: /var/log/mpd/mpd.log
+mpd_pid_file: /run/mpd/pid
+mpd_state_file: "{{ mpd_root }}/state"
+mpd_sticker_file: "{{ mpd_root }}/sticker"
 
 mpd_user: mpd
+mpd_group: nobody
+
+mpd_bind_to_address: any
+mpd_port: "6600"
+mpd_log_level: default
+
+mpd_gapless_playback: "yes"
+mpd_restore_paused: "no"
+
+mpd_save_absolute_paths_in_playlists: "no"
+mpd_follow_outside_symlinks: "no"
+mpd_follow_inside_symlinks: "no"
+
+mpd_zeroconf_enabled: "no"
+mpd_zeroconf_name: "no"
+
+mpd_auto_update: "yes"
+mpd_auto_update_depth: "0"
 
 mpd_audio_output:
   httpd:
