@@ -15,7 +15,7 @@ mpd_sticker_file: "{{ mpd_root }}/sticker"
 mpd_user: mpd
 mpd_group: nobody
 
-mpd_bind_to_address: any
+mpd_bind_to_address: localhost
 mpd_port: "6600"
 mpd_log_level: default
 
