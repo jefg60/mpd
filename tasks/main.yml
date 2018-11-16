@@ -1,9 +1,11 @@
 ---
 # tasks file for mpd
 
-- name: install mpd
+- name: install mpd packages
   apt:
-    name: mpd
+    name:
+      - mpd
+      - mpc
     state: present
     update_cache: yes
 
