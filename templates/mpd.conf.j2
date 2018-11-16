@@ -214,6 +214,7 @@ input {
 # blocks. Setting this block is optional, though the server will only attempt
 # autodetection for one sound card.
 #
+{% if mpd_audio_output is defined %}
 {% for audio_output in mpd_audio_output %}
 audio_output {
 	type			"{{ audio_output.type }}"
@@ -294,6 +295,7 @@ audio_output {
 {% endif %}
 }
 {% endfor %}
+{% endif %}
 # An example of an ALSA output:
 #
 #audio_output {

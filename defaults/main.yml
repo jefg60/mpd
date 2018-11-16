@@ -32,11 +32,3 @@ mpd_zeroconf_name: "no"
 mpd_auto_update: "yes"
 mpd_auto_update_depth: "0"
 
-mpd_audio_output:
-  httpd:
-    type: httpd
-    name: My HTTP Stream
-    encoder: lame
-    port: 8000
-    bitrate: 128
-    format: "44100:16:2"
