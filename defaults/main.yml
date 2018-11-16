@@ -13,7 +13,7 @@ mpd_state_file: "{{ mpd_root }}/state"
 mpd_sticker_file: "{{ mpd_root }}/sticker"
 
 mpd_user: mpd
-mpd_group: nobody
+mpd_group: audio
 
 mpd_bind_to_address: localhost
 mpd_port: "6600"

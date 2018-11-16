@@ -9,6 +9,14 @@
     state: present
     update_cache: yes
 
+- name: set permissions on music dir
+  file:
+    name: "{{ mpd_music_directory }}"
+    state: directory
+    owner: "{{ mpd_user }}"
+    group: "{{ mpd_group }}"
+    recurse: true
+
 - name: Generate MPD configuration file
   template:
     dest: "{{ mpd_conf }}"
