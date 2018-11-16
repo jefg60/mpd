@@ -11,7 +11,7 @@ None
 Role Variables
 --------------
 
-Role variables follow the format mpd_<setting in mpd.conf>
+Role variables follow the format mpd_setting in mpd.conf>
 See the mpd.conf comments for example vars 
 
 For multiple audio outputs, create a YAML dict. If none are defined, MPD will just default to the first soundcard.
