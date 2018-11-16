@@ -11,13 +11,14 @@ None
 Role Variables
 --------------
 
-Role variables follow the format mpd_setting in mpd.conf
-See the mpd.conf comments for example vars 
+Role variables follow the format mpd_setting_in_mpd.conf
+See the mpd.conf.j2 comments for example vars.
 
-For multiple audio outputs, create a YAML dict. If none are defined, MPD will just default to the first soundcard.
+For multiple audio outputs, create a YAML dict. If none are defined, MPD will just default to the first soundcard. The template will loop over each setting and include it if it is defined. Again, see the examples in mpd.conf.j2
 e.g.
 
-```mpd_audio_output:
+```
+mpd_audio_output:
   httpd:
     type: httpd
     name: My HTTP Stream
