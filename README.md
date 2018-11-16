@@ -17,7 +17,7 @@ See the mpd.conf.j2 comments for example vars.
 ```
 mpd_bind_to_address:
 ```
- defaults to localhost meaning that mpd is only responsive to clients on the local machine. To override this set an IP or set it to "any".
+Defaults to localhost meaning that mpd is only responsive to clients on the local machine. To override this set an IP or set it to "any". Note this is for the control port (default 6600) which enables remote clients to control the daemon so if you have a headless MPD server or otherwise want to control it remotely you will want to set this to either an IP address or "any".
 
 For multiple audio outputs, create a YAML dict. If none are defined, MPD will just default to the first soundcard. The template will loop over each setting and include it if it is defined. Again, see the examples in mpd.conf.j2 for a complete list of options. The template should prevent you from including a quality setting and a bitrate together. Either use one or the other, not both.
 e.g.
