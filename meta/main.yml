@@ -1,6 +1,6 @@
 galaxy_info:
   author: Jeff Hibberd
-  description: Ansible role to configure Music Player Daemon 
+  description: Ansible role to configure Music Player Daemon
   company: jeffhibberd.com
 
   license: GPLv3
