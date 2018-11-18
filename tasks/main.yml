@@ -15,6 +15,7 @@
     state: directory
     owner: "{{ mpd_user }}"
     group: "{{ mpd_group }}"
+    mode: 0775
     recurse: true
 
 - name: Generate MPD configuration file
