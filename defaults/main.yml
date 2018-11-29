@@ -32,3 +32,12 @@ mpd_zeroconf_name: "MPD Music Player"
 mpd_auto_update: "yes"
 mpd_auto_update_depth: "0"
 
+mpd_audio_outputs:
+  - httpd:
+    type: httpd
+    name: My HTTP Stream
+    encoder: vorbis
+    port: 8000
+    quality: "4.0" # Overrides bitrate
+    bitrate: 128
+    format: "44100:16:2"
