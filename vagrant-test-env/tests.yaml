@@ -1,0 +1,34 @@
+---
+- hosts: all
+  tasks:
+    - name: copy Sample Audio file
+      copy:
+        src: SampleAudio.mp3
+        dest: /var/lib/mpd/music/
+      become: yes
+
+    - name: mpc update
+      command: mpc update
+      changed_when: false
+
+    - name: Test mpc client status
+      command: mpc status
+      changed_when: false
+
+    - name: Test mpc ls
+      command: mpc ls
+      changed_when: false
+
+    - name: Test mpc add
+      command: mpc add SampleAudio.mp3
+      changed_when: false
+
+    - name: Test mpc playlist
+      command: mpc playlist
+      register: mpc_playlist
+      failed_when: "'SampleAudio.mp3' not in mpc_playlist.stdout"
+      changed_when: false
+
+    - name: check that port 8000 responds (http streaming)
+      command: nc -z localhost 8000
+      changed_when: false

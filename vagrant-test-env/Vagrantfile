@@ -1,0 +1,37 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+#
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "debian/stretch64"
+  config.vm.hostname = "vagrantmpd"
+  config.vm.synced_folder ".", "/vagrant", type: "rsync",
+    rsync__exclude: "roles/"
+
+  # ansible playbook run
+  config.vm.provision "ansible" do |ansible|
+    ansible.limit = "all"
+    ansible.playbook = "mpd-test.yaml"
+    ansible.raw_arguments = ["-v"]
+    ansible.groups = {
+      "all" => ["default"]
+    }
+    # change ansible.tags for faster testing
+    ansible.tags = 'all'
+    ansible.extra_vars = {
+      ansible_ssh_user: 'vagrant',
+    }
+  end # config.vm.provision ansible main run
+
+  # ansible playbook run tests
+  config.vm.provision "ansible" do |ansible|
+    ansible.limit = "all"
+    ansible.playbook = "tests.yaml"
+    ansible.raw_arguments = ['-v']
+    # change ansible.tags for faster testing
+    ansible.tags = 'all'
+    ansible.extra_vars = {
+      ansible_ssh_user: 'vagrant',
+    }
+  end # config.vm.provision ansible test run
+end
