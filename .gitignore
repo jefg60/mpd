@@ -1,4 +1,4 @@
 *.retry
 *.log
 vagrant-test-env/.vagrant
-vagrant-test-env/roles/mpd
+vagrant-test-env/roles/mpd/
