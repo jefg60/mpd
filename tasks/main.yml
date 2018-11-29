@@ -26,3 +26,9 @@
     mode: 0644
     src: "{{ mpd_conf_src }}"
   notify: Restart MPD
+
+- name: Ensure mpd service is running and enabled
+  service:
+    name: mpd
+    state: started
+    enabled: true
