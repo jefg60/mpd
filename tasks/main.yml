@@ -1,5 +1,9 @@
 ---
 # tasks file for mpd
+- name: Wait for apt lock
+  shell: while fuser /var/lib/dpkg/lock >/dev/null ; do sleep $[ ( $RANDOM % 10 )  + 1 ]s ; done
+  args:
+    executable: /bin/bash
 
 - name: install mpd packages
   apt:
