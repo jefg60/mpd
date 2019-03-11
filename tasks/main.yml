@@ -4,6 +4,7 @@
   shell: while fuser /var/lib/dpkg/lock >/dev/null ; do sleep $[ ( $RANDOM % 10 )  + 1 ]s ; done
   args:
     executable: /bin/bash
+  changed_when: false
 
 - name: install mpd packages
   apt:
