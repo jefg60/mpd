@@ -14,14 +14,31 @@
     state: present
     update_cache: yes
 
-- name: set permissions on music dir
+- name: create mpd_music_directory
   file:
     name: "{{ mpd_music_directory }}"
     state: directory
+    mode: u=rwX,g=rwX,o=rwX
+    recurse: true
+
+- name: get mountpoint of music directory
+  shell: df "{{ mpd_music_directory }}" | awk 'NR==2{print $NF}'
+  register: musicdir_mount
+  changed_when: false
+
+- name: get fstype of musicdir_mount
+  set_fact:
+    musicdir_fstype: "{{ item.fstype }}"
+  loop: "{{ ansible_mounts }}"
+  when: item.mount == musicdir_mount.stdout
+
+- name: set music dir owner/group
+  file:
+    name: "{{ mpd_music_directory }}"
     owner: "{{ mpd_user }}"
     group: "{{ mpd_group }}"
-    mode: 0775
     recurse: true
+  when: musicdir_fstype != 'vfat'
 
 - name: Generate MPD configuration file
   template:
